@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { RouterProvider } from 'react-router-dom';
+import { Footer } from './components/footer';
+import Header from './components/header';
+import CategoryProvider from './context/CategoryContext';
+import ProductSearchContextProvider from './context/ProductSearchContext';
+import router from './router/router';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return ( <>
+
+        <ProductSearchContextProvider>
+        <GoogleOAuthProvider clientId="330918037634-i4f9aeovosbu8vvgqg2lui2vpgmu9ul4.apps.googleusercontent.com">
+
+        <div >
+        
+        <CategoryProvider>
+        <Header/>
+        </CategoryProvider>
+        
+        </div>
+        
+        <RouterProvider router = {router} > </RouterProvider>
+        
+        </GoogleOAuthProvider>
+        </ProductSearchContextProvider>
+        
+        <Footer/>
+        
+        </>
+    );
 }
 
 export default App;
